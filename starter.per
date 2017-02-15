@@ -1,0 +1,36 @@
+LAYOUT (TEXT="Starter Pattern")
+VBOX
+GROUP (TEXT="QBE")
+GRID
+{
+Order Number  [q01         ]
+Customer Code [q02         ]
+Order Date    [q03         ]
+}
+END
+END
+GROUP (TEXT="Input")
+GRID
+{
+Printer  [p01             ]
+Copies   [p02]
+Collate  [p03]
+}
+END
+END
+
+END
+END 
+
+ATTRIBUTES
+p01 = formonly.printer;
+SPINEDIT p02 = formonly.copies;
+CHECKBOX p03 = formonly.collate NOT NULL;
+
+BUTTONEDIT q01 = formonly.qbe1;
+BUTTONEDIT q02 = formonly.qbe2;
+DATEEDIT q03 = formonly.qbe3;
+
+INSTRUCTIONS
+SCREEN RECORD inp(printer, copies, collate)
+SCREEN RECORD con(qbe1, qbe2, qbe3);

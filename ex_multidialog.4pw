@@ -55,6 +55,22 @@
   <PlatformList version="1.0"/>
   <Group label="ex_multidialog" language="Genero" targetDirectory="$(ProjectDir)">
     <Application binaryName="ex_multidialog" id="18736" label="ex_multidialog">
+      <VirtualFolder label="listbox">
+        <File filePath="listbox.4gl"/>
+        <File filePath="listbox.per"/>
+      </VirtualFolder>
+      <VirtualFolder label="masterdetail">
+        <File filePath="masterdetail.4gl"/>
+        <File filePath="masterdetail.per"/>
+      </VirtualFolder>
+      <VirtualFolder label="starter">
+        <File filePath="starter.4gl"/>
+        <File filePath="starter.per"/>
+      </VirtualFolder>
+      <VirtualFolder label="twolist">
+        <File filePath="twolist.4gl"/>
+        <File filePath="twolist.per"/>
+      </VirtualFolder>
       <File filePath="multidialog.4gl"/>
       <File filePath="multidialog.per"/>
     </Application>

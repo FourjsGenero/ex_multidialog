@@ -1,0 +1,26 @@
+LAYOUT (TEXT="Listbox Pattern")
+GRID
+{
+Order Number [x01         ]
+Customer Code[x02         ]
+Promo Codes   <T t1      >
+               [x03     ]
+               [x03     ]
+               [x03     ]
+               [x03     ]
+
+Product Code [x04         ]
+}
+END
+END
+
+ATTRIBUTES
+BUTTONEDIT x01 = formonly.listbox1;
+BUTTONEDIT x02 = formonly.listbox2;
+x03 = formonly.listbox3, TITLE="Promo Codes";
+BUTTONEDIT x04 = formonly.listbox4;
+
+TABLE t1: WANTFIXEDPAGESIZE;
+
+INSTRUCTIONS
+SCREEN RECORD listbox(listbox3);

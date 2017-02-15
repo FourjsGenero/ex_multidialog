@@ -1,0 +1,32 @@
+LAYOUT (TEXT="Master Detail Pattern")
+VBOX
+GROUP (TEXT="Master")
+GRID
+{
+Order Number    [m01       ]
+[""]
+Customer Number [m02       ]
+Order Date      [m03       ]
+}
+END
+END
+GROUP (TEXT="Detail")
+TABLE (HEIGHT=10 LINES)
+{
+[d01       ][d02       ][d03       ]
+}
+END
+END
+END
+
+ATTRIBUTES
+BUTTONEDIT m01 = formonly.master1, UPSHIFT;
+BUTTONEDIT m02 = formonly.master2, UPSHIFT;
+DATEEDIT m03 = formonly.master3;
+d01 = formonly.detail1 TYPE INTEGER, TITLE="Line Number" ;
+BUTTONEDIT d02 = formonly.detail2, TITLE="Product Code", UPSHIFT;
+SPINEDIT d03 = formonly.detail3 TYPE INTEGER, TITLE="Quantity" ;
+
+INSTRUCTIONS
+SCREEN RECORD master(master1, master2, master3);
+SCREEN RECORD detail_arr(detail1, detail2, detail3);

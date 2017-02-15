@@ -1,0 +1,26 @@
+LAYOUT (TEXT="Two List Pattern")
+GRID
+{
+<T         >     <T         >
+ [l01     ] [b01] [l02     ]
+ [l01     ] [b02] [l02     ]
+ [l01     ] [b03] [l02     ]
+ [l01     ]       [l02     ]
+ [l01     ]       [l02     ]
+ [l01     ]       [l02     ]
+ [l01     ]       [l02     ]
+ [l01     ]       [l02     ]
+}
+END
+END
+
+ATTRIBUTES
+l01 = formonly.list1, TITLE="Select From";
+l02 = formonly.list2, TITLE="Selected Items";
+BUTTON b01: left2right, IMAGE="arright";
+BUTTON b02: right2left, IMAGE="arrleft";
+BUTTON b03: toggle, TEXT="Toggle";
+
+INSTRUCTIONS
+SCREEN RECORD list1(list1);
+SCREEN RECORD list2(list2);

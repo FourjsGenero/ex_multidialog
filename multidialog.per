@@ -1,137 +1,31 @@
-TOOLBAR
-ITEM accept (IMAGE="accept")
-ITEM cancel (IMAGE="cancel")
-SEPARATOR
-ITEM back (IMAGE="uplevel", TEXT="Back")
-SEPARATOR
-ITEM insert (IMAGE="listins")
-ITEM append (IMAGE="listadd")
-ITEM delete (IMAGE="listdel")
-
-END
-
-
 LAYOUT (TEXT="Multi Dialog Examples")
-FOLDER
-PAGE (TEXT="Master Detail")
-VBOX
-GROUP (TEXT="Master")
 GRID
 {
-Order Number    [m01       ]
-[""]
-Customer Number [m02       ]
-Order Date      [m03       ]
+            [l01        |l02       ]
+[l03        |b01        |b02       ]
+[l04        |b03        |b04       ]
+[l05        |b05        |b06       ]
+[l06        |b07        |b08       ]
 }
-END
-END
-GROUP (TEXT="Detail")
-TABLE (HEIGHT=10 LINES)
-{
-[d01       ][d02       ][d03       ]
-}
-END
-END
-END
-END
-
-PAGE (TEXT="Starter Pattern")
-VBOX
-GROUP (TEXT="QBE")
-GRID
-{
-Order Number  [q01         ]
-Customer Code [q02         ]
-Order Date    [q03         ]
-}
-END
-END
-GROUP (TEXT="Input")
-GRID
-{
-Printer  [p01             ]
-Copies   [p02]
-Collate  [p03]
-}
-END
-END
-
-END
-END
-
-PAGE (TEXT="2 Lists")
-GRID
-{
-<T         >     <T         >
- [l01     ] [b01] [l02     ]
- [l01     ] [b02] [l02     ]
- [l01     ] [b03] [l02     ]
- [l01     ]       [l02     ]
- [l01     ]       [l02     ]
- [l01     ]       [l02     ]
- [l01     ]       [l02     ]
- [l01     ]       [l02     ]
-}
-END
-END
-
-PAGE (TEXT="Listbox")
-GRID
-{
-Order Number [x01         ]
-Customer Code[x02         ]
-Promo Codes   <T t1      >
-               [x03     ]
-               [x03     ]
-               [x03     ]
-               [x03     ]
-
-Product Code [x04         ]
-}
-END
-
-
 END
 END
 ATTRIBUTES
+LABEL l01: TEXT="Informix-4gl", JUSTIFY=CENTER;
+LABEL l02: TEXT="Genero Multi Dialog", JUSTIFY=CENTER;
+LABEL l03: TEXT="Master Detail";
+LABEL l04: TEXT="Starter";
+LABEL l05: TEXT="Two List";
+LABEL l06: TEXT="ListBox";
 
-BUTTONEDIT m01 = formonly.master1, UPSHIFT;
-BUTTONEDIT m02 = formonly.master2, UPSHIFT;
-DATEEDIT m03 = formonly.master3;
-d01 = formonly.detail1 TYPE INTEGER, TITLE="Line Number" ;
-BUTTONEDIT d02 = formonly.detail2, TITLE="Product Code", UPSHIFT;
-SPINEDIT d03 = formonly.detail3 TYPE INTEGER, TITLE="Quantity" ;
+BUTTON b01: ifx_master_detail, TEXT="Click here ...";
+BUTTON b02: gmd_master_detail, TEXT="Click here ...";
+BUTTON b03: ifx_starter, TEXT="Click here ...";
+BUTTON b04: gmd_starter, TEXT="Click here ...";
+BUTTON b05: ifx_twolist, TEXT="Click here ...";
+BUTTON b06: gmd_twolist, TEXT="Click here ...";
+BUTTON b07: ifx_listbox, TEXT="Click here ...";
+BUTTON b08: gmd_listbox, TEXT="Click here ...";
 
-p01 = formonly.printer;
-SPINEDIT p02 = formonly.copies;
-CHECKBOX p03 = formonly.collate NOT NULL;
 
-BUTTONEDIT q01 = formonly.qbe1;
-BUTTONEDIT q02 = formonly.qbe2;
-DATEEDIT q03 = formonly.qbe3;
 
-l01 = formonly.list1, TITLE="Select From";
-l02 = formonly.list2, TITLE="Selected Items";
-BUTTON b01: left2right, IMAGE="arright";
-BUTTON b02: right2left, IMAGE="arrleft";
-BUTTON b03: toggle, TEXT="Toggle";
-
-BUTTONEDIT x01 = formonly.listbox1;
-BUTTONEDIT x02 = formonly.listbox2;
-x03 = formonly.listbox3, TITLE="Promo Codes";
-BUTTONEDIT x04 = formonly.listbox4;
-
-TABLE t1: WANTFIXEDPAGESIZE;
-
-INSTRUCTIONS
-SCREEN RECORD master(master1, master2, master3);
-SCREEN RECORD detail_arr(detail1, detail2, detail3);
-
-SCREEN RECORD inp(printer, copies, collate)
-SCREEN RECORD con(qbe1, qbe2, qbe3);
-
-SCREEN RECORD list1(list1);
-SCREEN RECORD list2(list2);
-
-SCREEN RECORD listbox(listbox3);
 
