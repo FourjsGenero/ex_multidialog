@@ -15,6 +15,7 @@ DEFINE mode STRING
     CALL init()
     CALL open_window()
 
+    -- display arrays initially
     DISPLAY ARRAY list1 TO list1.*
         BEFORE DISPLAY
             CALL ui.Interface.refresh()
@@ -36,6 +37,7 @@ DEFINE mode STRING
                         CALL list2.appendElement()
                         LET list2[list2.getLength()].value = list1[DIALOG.getCurrentRow("list1")].value
                         CALL DIALOG.deleteRow("list1",DIALOG.getCurrentRow("list1"))
+                        -- redisplay array
                         DISPLAY ARRAY list2 TO list2.*
                             BEFORE DISPLAY
                                 CALL ui.Interface.refresh()
@@ -61,6 +63,7 @@ DEFINE mode STRING
                         CALL list1.appendElement()
                         LET list1[list1.getLength()].value = list2[DIALOG.getCurrentRow("list2")].value
                         CALL DIALOG.deleteRow("list2",DIALOG.getCurrentRow("list2"))
+                        --redisplay array
                         DISPLAY ARRAY list1 TO list1.*
                             BEFORE DISPLAY
                                 CALL ui.Interface.refresh()
