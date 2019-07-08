@@ -96,4 +96,8 @@ PRIVATE FUNCTION init()
     LET masterdetail.detail_arr[1].detail1 = 1
     LET masterdetail.detail_arr[1].detail2 = "F100"
     LET masterdetail.detail_arr[1].detail3 = "200"
+
+    LET masterdetail.detail_arr[2].detail1 = 2
+    LET masterdetail.detail_arr[2].detail2 = "G200"
+    LET masterdetail.detail_arr[2].detail3 = "20"
 END FUNCTION
