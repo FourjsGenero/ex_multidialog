@@ -1,15 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
 MAIN
 
     OPTIONS FIELD ORDER FORM
@@ -17,7 +5,14 @@ MAIN
     DEFER INTERRUPT
 
     CLOSE WINDOW SCREEN
+
+--    IF 1=1 THEN
+--        CALL ifx_starter()
+--
+--        EXIT PROGRAM 1
+--    END IF
     OPEN WINDOW w WITH FORM "multidialog"
+    CALL ui.Interface.refresh()
 
     -- Allow the user to select a design pattern and view the traditional
     -- Informix way, and the Multi-Dialog way of doing things
@@ -28,7 +23,7 @@ MAIN
             CALL ifx_master_detail()
         ON ACTION gmd_master_detail
             CALL gmd_master_detail()
-         
+
         ON ACTION ifx_starter
             CALL ifx_starter()
         ON ACTION gmd_starter
@@ -43,7 +38,7 @@ MAIN
             CALL ifx_listbox()
         ON ACTION gmd_listbox
             CALL gmd_listbox()
-         
+
         ON ACTION CLOSE
             EXIT MENU
     END MENU

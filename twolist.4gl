@@ -10,7 +10,7 @@ END RECORD
 -- same time.  Typically seen in wizards
 
 FUNCTION ifx_twolist()
-DEFINE mode STRING
+    DEFINE mode STRING
 
     CALL init()
     CALL open_window()
@@ -36,14 +36,14 @@ DEFINE mode STRING
                     ON ACTION left2right
                         CALL list2.appendElement()
                         LET list2[list2.getLength()].value = list1[DIALOG.getCurrentRow("list1")].value
-                        CALL DIALOG.deleteRow("list1",DIALOG.getCurrentRow("list1"))
+                        CALL DIALOG.deleteRow("list1", DIALOG.getCurrentRow("list1"))
                         -- redisplay array
                         DISPLAY ARRAY list2 TO list2.*
                             BEFORE DISPLAY
                                 CALL ui.Interface.refresh()
                                 EXIT DISPLAY
                         END DISPLAY
-                    --
+                        --
                     ON ACTION toggle
                         LET mode = "list2"
                         EXIT DISPLAY
@@ -54,7 +54,7 @@ DEFINE mode STRING
                         LET mode = "exit"
                         EXIT DISPLAY
                 END DISPLAY
-         WHEN "list2"
+            WHEN "list2"
                 DISPLAY ARRAY list2 TO list2.*
                     ON ACTION toggle
                         LET mode = "list1"
@@ -62,7 +62,7 @@ DEFINE mode STRING
                     ON ACTION right2left
                         CALL list1.appendElement()
                         LET list1[list1.getLength()].value = list2[DIALOG.getCurrentRow("list2")].value
-                        CALL DIALOG.deleteRow("list2",DIALOG.getCurrentRow("list2"))
+                        CALL DIALOG.deleteRow("list2", DIALOG.getCurrentRow("list2"))
                         --redisplay array
                         DISPLAY ARRAY list1 TO list1.*
                             BEFORE DISPLAY
@@ -81,8 +81,6 @@ DEFINE mode STRING
     CALL close_window()
 END FUNCTION
 
-
-
 FUNCTION gmd_twolist()
     CALL init()
     CALL open_window()
@@ -91,13 +89,13 @@ FUNCTION gmd_twolist()
             ON ACTION left2right --
                 CALL DIALOG.appendRow("list2")
                 LET list2[DIALOG.getArrayLength("list2")].value = list1[DIALOG.getCurrentRow("list1")].value
-                CALL DIALOG.deleteRow("list1",DIALOG.getCurrentRow("list1"))
+                CALL DIALOG.deleteRow("list1", DIALOG.getCurrentRow("list1"))
         END DISPLAY
         DISPLAY ARRAY list2 TO list2.*
             ON ACTION right2left --
                 CALL DIALOG.appendRow("list1")
                 LET list1[DIALOG.getArrayLength("list1")].value = list2[DIALOG.getCurrentRow("list2")].value
-                CALL DIALOG.deleteRow("list2",DIALOG.getCurrentRow("list2"))
+                CALL DIALOG.deleteRow("list2", DIALOG.getCurrentRow("list2"))
         END DISPLAY
 
         ON ACTION CLOSE
@@ -112,24 +110,18 @@ FUNCTION gmd_twolist()
     CALL close_window()
 END FUNCTION
 
-
-
 PRIVATE FUNCTION open_window()
     OPEN WINDOW tl WITH FORM "twolist"
 END FUNCTION
-
-
 
 PRIVATE FUNCTION close_window()
     CLOSE WINDOW tl
 END FUNCTION
 
-
-
 PRIVATE FUNCTION init()
-DEFINE i INTEGER
+    DEFINE i INTEGER
     FOR i = 1 TO 10
-        LET list1[i].value = 2*i-1
-        LET list2[i].value = 2*i
+        LET list1[i].value = 2 * i - 1
+        LET list2[i].value = 2 * i
     END FOR
 END FUNCTION

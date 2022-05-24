@@ -1,4 +1,4 @@
-DEFINE inputconstruct RECORD 
+DEFINE inputconstruct RECORD
     con RECORD
         qbe1 STRING,
         qbe2 STRING,
@@ -16,15 +16,15 @@ END RECORD
 -- one or more INPUT statements
 
 FUNCTION ifx_starter()
-DEFINE mode STRING
-DEFINE where_clause STRING
+    DEFINE mode STRING
+    DEFINE where_clause STRING
 
     CALL open_window()
     LET mode = "qbe"
     WHILE mode != "exit"
         CASE mode --
             WHEN "qbe"
-                CONSTRUCT BY NAME where_clause ON qbe1, qbe2, qbe3 
+                CONSTRUCT BY NAME where_clause ON qbe1, qbe2, qbe3
                     AFTER CONSTRUCT
                         IF INT_FLAG THEN
                             LET MODE = "exit"
@@ -34,8 +34,8 @@ DEFINE where_clause STRING
                 END CONSTRUCT
                 LET INT_FLAG = 0
             WHEN "input"
-                INPUT BY NAME inputconstruct.inp.* ATTRIBUTES(WITHOUT DEFAULTS=TRUE)
-                    ON ACTION back ATTRIBUTES(TEXT="Back")
+                INPUT BY NAME inputconstruct.inp.* ATTRIBUTES(WITHOUT DEFAULTS = TRUE)
+                    ON ACTION back ATTRIBUTES(TEXT = "Back")
                         LET mode = "qbe"
                         EXIT INPUT
                     AFTER INPUT
@@ -51,36 +51,38 @@ DEFINE where_clause STRING
     CALL close_window()
 END FUNCTION
 
-
-
 FUNCTION gmd_starter()
-DEFINE where_clause STRING
+    DEFINE where_clause STRING
+
+    LET inputconstruct.inp.printer = "Reception"
+    LET inputconstruct.inp.collate = TRUE
+    LET inputconstruct.inp.copies = 1
 
     CALL open_window()
     DIALOG
-        CONSTRUCT BY NAME where_clause ON qbe1, qbe2, qbe3 
+        CONSTRUCT BY NAME where_clause ON qbe1, qbe2, qbe3
         END CONSTRUCT
-        
-        INPUT BY NAME inputconstruct.inp.* ATTRIBUTES(WITHOUT DEFAULTS=TRUE)
+
+        INPUT BY NAME inputconstruct.inp.* ATTRIBUTES(WITHOUT DEFAULTS = TRUE)
         END INPUT
 
-        ON ACTION accept--
+        BEFORE DIALOG
+            DISPLAY "A*" TO qbe2
+            DISPLAY ">=01012020" TO qbe3
+
+        ON ACTION accept --
             ACCEPT DIALOG
-        ON ACTION cancel--
+        ON ACTION cancel --
             EXIT DIALOG
-        ON ACTION close--
+        ON ACTION close --
             EXIT DIALOG
     END DIALOG
     CALL close_window()
 END FUNCTION
 
-
-
 PRIVATE FUNCTION open_window()
     OPEN WINDOW st WITH FORM "starter"
 END FUNCTION
-
-
 
 PRIVATE FUNCTION close_window()
     CLOSE WINDOW st
